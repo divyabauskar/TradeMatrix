@@ -1,0 +1,114 @@
+.root {
+    -fx-background-color: #121826;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    -fx-text-fill: #e2e8f0;
+}
+.sidebar {
+    -fx-background-color: #1a2235;
+    -fx-padding: 30;
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #2a3449;
+}
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 15px;
+    -fx-alignment: center-left;
+    -fx-padding: 12 20;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.sidebar-btn:hover {
+    -fx-background-color: #2a3449;
+    -fx-text-fill: white;
+}
+.sidebar-btn-active {
+    -fx-background-color: #0ea5e9;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-alignment: center-left;
+    -fx-padding: 12 20;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.card {
+    -fx-background-color: #1e293b;
+    -fx-background-radius: 12;
+    -fx-padding: 25;
+}
+.summary-card {
+    -fx-background-radius: 12;
+    -fx-padding: 25;
+    -fx-alignment: center;
+}
+.card-invested { -fx-background-color: #475569; }
+.card-current { -fx-background-color: #22c55e; }
+.card-pnl { -fx-background-color: #0ea5e9; }
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #334155;
+    -fx-border-radius: 8;
+    -fx-padding: 2;
+}
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #334155;
+}
+.table-view .column-header .label {
+    -fx-text-fill: #94a3b8;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0;
+}
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #2a3449;
+    -fx-padding: 5 0;
+}
+.table-row-cell:odd {
+    -fx-background-color: #1a2235;
+}
+.table-view .table-cell {
+    -fx-text-fill: #f8fafc;
+    -fx-font-size: 13px;
+}
+.text-field, .combo-box, .date-picker {
+    -fx-background-color: #334155;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-border-color: #475569;
+    -fx-border-radius: 6;
+    -fx-padding: 8;
+}
+.action-btn {
+    -fx-background-color: #22c55e;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+.action-btn:hover {
+    -fx-background-color: #16a34a;
+}
+.chart-title { -fx-text-fill: #e2e8f0; }
+.axis-label { -fx-text-fill: #94a3b8; }
+.axis { -fx-tick-label-fill: #94a3b8; }
+.chart-horizontal-grid-lines { -fx-stroke: #334155; }
+.chart-vertical-grid-lines { -fx-stroke: transparent; }
+.chart-pie-label { -fx-fill: white; }
+.chart-legend { -fx-background-color: transparent; }
+.chart-legend-item { -fx-text-fill: white; }
+
+/* Semantic Typography (Dark Mode Base) */
+.title-main { -fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; }
+.title-brand { -fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #38bdf8; }
+.subtitle { -fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #cbd5e1; }
+.value-large { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white; }
+.text-bold-muted { -fx-font-weight: bold; -fx-text-fill: #cbd5e1; }
+.text-success { -fx-text-fill: #dcfce7; }
+.text-info { -fx-text-fill: #e0f2fe; }

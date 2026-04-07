@@ -1,0 +1,60 @@
+/* Light Mode Colors */
+.root {
+    -fx-background-color: #f8fafc;
+    -fx-text-fill: #1e293b;
+}
+.sidebar {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e2e8f0;
+}
+.sidebar-btn {
+    -fx-text-fill: #64748b;
+}
+.sidebar-btn:hover {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #0ea5e9;
+}
+.card {
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 0);
+}
+.text-field, .combo-box, .date-picker {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #0f172a;
+    -fx-border-color: #cbd5e1;
+}
+.table-view {
+    -fx-border-color: #e2e8f0;
+}
+.table-view .column-header {
+    -fx-border-color: #e2e8f0;
+}
+.table-view .column-header .label {
+    -fx-text-fill: #64748b;
+}
+.table-row-cell {
+    -fx-border-color: #e2e8f0;
+}
+.table-row-cell:odd {
+    -fx-background-color: #f8fafc;
+}
+.table-view .table-cell {
+    -fx-text-fill: #1e293b;
+}
+
+/* Light Theme Semantic Typography Overrides */
+.title-main { -fx-text-fill: #1e293b; }
+.title-brand { -fx-text-fill: #0ea5e9; }
+.subtitle { -fx-text-fill: #475569; }
+.value-large { -fx-text-fill: #1e293b; }
+.text-bold-muted { -fx-text-fill: #64748b; }
+.text-success { -fx-text-fill: #16a34a; }
+.text-info { -fx-text-fill: #0284c7; }
+
+/* Charts */
+.chart-title { -fx-text-fill: #1e293b; }
+.axis-label { -fx-text-fill: #64748b; }
+.axis { -fx-tick-label-fill: #64748b; }
+.chart-horizontal-grid-lines { -fx-stroke: #e2e8f0; }
+.chart-pie-label { -fx-fill: #1e293b; }
+.chart-legend-item { -fx-text-fill: #1e293b; }

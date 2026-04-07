@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tradematrix.SettingsController" stylesheets="@../css/style.css">
+    <VBox styleClass="sidebar" prefWidth="240" spacing="15">
+        <Label text="TradeMatrix" styleClass="title-brand">
+            <VBox.margin><Insets bottom="30" top="10"/></VBox.margin>
+        </Label>
+        <Button text=" Dashboard" onAction="#handleGoToDashboard" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" Portfolio" onAction="#handleGoToPortfolio" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" History" onAction="#handleGoToHistory" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" Settings" onAction="#handleGoToSettings" styleClass="sidebar-btn-active" maxWidth="Infinity"/>
+    </VBox>
+    
+    <VBox HBox.hgrow="ALWAYS" spacing="30" style="-fx-padding: 40;">
+        <Label text="Application Settings" styleClass="title-main"/>
+        
+        <HBox spacing="30">
+            <VBox styleClass="card" spacing="20" HBox.hgrow="ALWAYS">
+                <Label text="User Preferences" styleClass="subtitle"/>
+                <GridPane vgap="25" hgap="30">
+                    <Label text="Theme Mode:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-text-fill: #94a3b8;"/>
+                    <ComboBox fx:id="themeComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200"/>
+                </GridPane>
+                
+                <Separator style="-fx-border-color: transparent transparent #334155 transparent; -fx-border-width: 0 0 1 0;"/>
+                
+                <Label text="Data Management" styleClass="subtitle"/>
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <Button text="Backup Local Database" onAction="#handleBackup" styleClass="action-btn" style="-fx-background-color: #334155;"/>
+                    <Label fx:id="statusLabel" textFill="#22c55e" wrapText="true"/>
+                </HBox>
+            </VBox>
+            
+            <VBox styleClass="card" spacing="15" prefWidth="250">
+                <Label text="Performance Log" styleClass="subtitle"/>
+                <Label text="System status: Optimal" style="-fx-text-fill: #94a3b8;"/>
+                <Button text="Save Changes" onAction="#handleSaveChanges" styleClass="action-btn" maxWidth="Infinity">
+                    <VBox.margin><Insets top="50"/></VBox.margin>
+                </Button>
+            </VBox>
+        </HBox>
+    </VBox>
+</HBox>

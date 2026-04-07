@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tradematrix.LoginController" stylesheets="@../css/style.css" styleClass="root">
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+    </padding>
+
+    <Label text="TradeMatrix - Registration" styleClass="title-main"/>
+    
+    <VBox spacing="10.0" maxWidth="350" styleClass="card">
+        <VBox fx:id="signupBox" spacing="10.0">
+            <Label text="Full Name" styleClass="text-bold-muted"/>
+            <TextField fx:id="fullNameField" promptText="e.g. John Doe"/>
+            
+            <Label text="Username" styleClass="text-bold-muted"/>
+            <TextField fx:id="usernameField" promptText="e.g. johndoe"/>
+            
+            <Label text="Email ID" styleClass="text-bold-muted"/>
+            <TextField fx:id="emailField" promptText="e.g. john@example.com"/>
+            
+            <Label text="Mobile Number" styleClass="text-bold-muted"/>
+            <TextField fx:id="mobileField" promptText="e.g. 9876543210"/>
+            
+            <Label text="Password" styleClass="text-bold-muted"/>
+            <PasswordField fx:id="passwordField" promptText="Enter a secure password"/>
+            
+            <Label text="Confirm Password" styleClass="text-bold-muted"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm your password"/>
+            
+            <Button fx:id="signupButton" text="Create Account" maxWidth="Infinity" onAction="#handleSignup" styleClass="action-btn" style="-fx-margin-top: 10px; -fx-background-color: #0ea5e9;"/>
+        </VBox>
+        
+        <Label fx:id="statusLabel" wrapText="true"/>
+        
+        <Separator style="-fx-padding: 10 0; -fx-border-color: #334155; -fx-border-width: 0 0 1 0;"/>
+        
+        <HBox alignment="CENTER">
+            <Label text="Already registered? " style="-fx-text-fill: #94a3b8;"/>
+            <Button text="Login Here" onAction="#handleGoToLogin" style="-fx-background-color: transparent; -fx-text-fill: #38bdf8; -fx-underline: true; -fx-cursor: hand; -fx-padding: 0;"/>
+        </HBox>
+    </VBox>
+</VBox>

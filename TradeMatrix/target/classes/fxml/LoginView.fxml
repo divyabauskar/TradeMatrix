@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tradematrix.LoginViewController" stylesheets="@../css/style.css" styleClass="root">
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+    </padding>
+
+    <Label text="TradeMatrix - Sign In" styleClass="title-main"/>
+    
+    <VBox spacing="10.0" maxWidth="350" styleClass="card">
+        <VBox fx:id="credentialsBox" spacing="10.0">
+            <Label text="Username" styleClass="text-bold-muted"/>
+            <TextField fx:id="usernameField" promptText="Enter your username"/>
+            
+            <Label text="Password" styleClass="text-bold-muted"/>
+            <PasswordField fx:id="passwordField" promptText="Enter your password"/>
+            
+            <Button fx:id="loginButton" text="Login" maxWidth="Infinity" onAction="#handleLogin" styleClass="action-btn" style="-fx-margin-top: 10px; -fx-background-color: #0ea5e9;"/>
+        </VBox>
+        
+        <Label fx:id="statusLabel" wrapText="true"/>
+        
+        <Separator style="-fx-padding: 10 0; -fx-border-color: #334155; -fx-border-width: 0 0 1 0;"/>
+        
+        <HBox alignment="CENTER">
+            <Label text="New User? " style="-fx-text-fill: #94a3b8;"/>
+            <Button text="Register Here" onAction="#handleGoToSignup" style="-fx-background-color: transparent; -fx-text-fill: #38bdf8; -fx-underline: true; -fx-cursor: hand; -fx-padding: 0;"/>
+        </HBox>
+    </VBox>
+</VBox>

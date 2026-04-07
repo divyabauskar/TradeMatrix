@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tradematrix.DashboardController" stylesheets="@../css/style.css">
+    
+    <VBox styleClass="sidebar" prefWidth="240" spacing="15">
+        <Label text="TradeMatrix" styleClass="title-brand">
+            <VBox.margin><Insets bottom="30" top="10"/></VBox.margin>
+        </Label>
+        
+        <Button text=" Profile" onAction="#handleGoToProfile" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" Dashboard" onAction="#handleGoToDashboard" styleClass="sidebar-btn-active" maxWidth="Infinity"/>
+        <Button text=" Portfolio" onAction="#handleGoToPortfolio" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" History" onAction="#handleGoToHistory" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" Settings" onAction="#handleGoToSettings" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        
+        <Separator style="-fx-padding: 10 0; -fx-border-color: #334155; -fx-border-width: 0 0 1 0;"/>
+        
+        <Button text="🚪 Logout" onAction="#handleLogout" styleClass="sidebar-btn" maxWidth="Infinity" style="-fx-text-fill: #ef4444;"/>
+    </VBox>
+    
+    <VBox HBox.hgrow="ALWAYS" spacing="25" style="-fx-padding: 30;">
+        <VBox fx:id="profileDetailsCard" styleClass="card" spacing="15" visible="false" managed="false">
+            <Label text="Profile Details" styleClass="title-main"/>
+            <Label fx:id="profileUsernameLabel" text="Username: N/A" styleClass="text-bold-muted"/>
+            <Label fx:id="profileEmailLabel" text="Email: N/A" styleClass="text-bold-muted"/>
+            <Label fx:id="profileNameLabel" text="Name: N/A" styleClass="text-bold-muted"/>
+            <Label fx:id="profileMobileLabel" text="Mobile: N/A" styleClass="text-bold-muted"/>
+            <Label fx:id="profileCurrencyLabel" text="Base Currency: N/A" styleClass="text-bold-muted"/>
+        </VBox>
+
+        <VBox fx:id="dashboardContent" spacing="25">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Live Dashboard" styleClass="title-main" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Button text="Refresh Live Prices ↻" onAction="#handleRefresh" styleClass="action-btn" style="-fx-background-color: #0ea5e9;"/>
+            </HBox>
+            
+            <HBox spacing="20">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <Label text="Total Invested:" styleClass="text-bold-muted"/>
+                    <Label fx:id="totalInvestedLabel" text="0.00" styleClass="value-large"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <Label text="Current Value:" styleClass="text-success"/>
+                    <Label fx:id="currentValueLabel" text="0.00" styleClass="value-large"/>
+                </VBox>
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <Label text="Profit / Loss:" styleClass="text-info"/>
+                    <Label fx:id="pnlLabel" text="0.00 (0.00%)" styleClass="value-large"/>
+                </VBox>
+            </HBox>
+
+            <HBox spacing="20" VBox.vgrow="ALWAYS">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" spacing="10">
+                    <Label text="Portfolio Performance (vs Nifty 50)" styleClass="subtitle"/>
+                    <LineChart fx:id="benchmarkChart" VBox.vgrow="ALWAYS" createSymbols="false">
+                        <xAxis><CategoryAxis styleClass="axis-label"/></xAxis>
+                        <yAxis><NumberAxis styleClass="axis-label" forceZeroInRange="false"/></yAxis>
+                    </LineChart>
+                </VBox>
+                <VBox styleClass="card" prefWidth="350" VBox.vgrow="ALWAYS" spacing="10">
+                    <Label text="Asset Diversification" styleClass="subtitle"/>
+                    <PieChart fx:id="sectorPieChart" VBox.vgrow="ALWAYS" labelsVisible="false"/>
+                </VBox>
+            </HBox>
+
+            <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="10">
+                <Label text="Current Holdings" styleClass="subtitle"/>
+                <TableView fx:id="holdingsTable" VBox.vgrow="ALWAYS" styleClass="table-view">
+                    <columns>
+                        <TableColumn fx:id="tickerCol" text="Symbol" prefWidth="120"/>
+                        <TableColumn fx:id="qtyCol" text="Qty" prefWidth="80"/>
+                        <TableColumn fx:id="avgCostCol" text="Avg Cost" prefWidth="100"/>
+                        <TableColumn fx:id="ltpCol" text="LTP" prefWidth="100"/>
+                        <TableColumn fx:id="investedCol" text="Invested" prefWidth="120"/>
+                        <TableColumn fx:id="currentValCol" text="Current Value" prefWidth="120"/>
+                        <TableColumn fx:id="pnlCol" text="P&amp;L" prefWidth="120"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </VBox>
+</HBox>

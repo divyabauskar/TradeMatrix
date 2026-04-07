@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tradematrix.OnboardingController" stylesheets="@../css/style.css">
+    
+    <VBox styleClass="sidebar" prefWidth="240" spacing="15">
+        <Label text="TradeMatrix" styleClass="title-brand">
+            <VBox.margin><Insets bottom="30" top="10"/></VBox.margin>
+        </Label>
+        
+        <Button text=" Dashboard" onAction="#handleGoToDashboard" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" Portfolio" onAction="#handleGoToPortfolio" styleClass="sidebar-btn-active" maxWidth="Infinity"/>
+        <Button text=" History" onAction="#handleGoToHistory" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" Settings" onAction="#handleGoToSettings" styleClass="sidebar-btn" maxWidth="Infinity"/>
+    </VBox>
+    
+    <VBox HBox.hgrow="ALWAYS" spacing="30" style="-fx-padding: 40;" alignment="TOP_CENTER">
+        <Label text="Add Transaction to Portfolio" styleClass="title-main"/>
+        <Label text="Manually import your transactions below to track your portfolio." style="-fx-text-fill: #94a3b8;"/>
+        
+        <GridPane vgap="20.0" hgap="20.0" alignment="CENTER" maxWidth="500" styleClass="card" style="-fx-margin-top: 20;">
+            <Label text="Ticker Symbol:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="text-bold-muted"/>
+            <TextField fx:id="tickerField" promptText="e.g. RELIANCE.NS" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            
+            <Label text="Transaction Type:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="text-bold-muted"/>
+            <ComboBox fx:id="typeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="250"/>
+            
+            <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="text-bold-muted"/>
+            <TextField fx:id="quantityField" promptText="e.g. 10" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            
+            <Label text="Price / Share:" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="text-bold-muted"/>
+            <TextField fx:id="priceField" promptText="e.g. 2500.50" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            
+            <Label text="Date:" GridPane.columnIndex="0" GridPane.rowIndex="4" styleClass="text-bold-muted"/>
+            <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="250"/>
+            
+            <Button text="Save Transaction" onAction="#handleAddTransaction" styleClass="action-btn" maxWidth="Infinity" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                <GridPane.margin><Insets top="15"/></GridPane.margin>
+            </Button>
+            
+            <Label fx:id="statusLabel" textFill="#22c55e" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6" wrapText="true" alignment="CENTER" maxWidth="Infinity"/>
+        </GridPane>
+    </VBox>
+</HBox>

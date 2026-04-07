@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tradematrix.HistoryController" stylesheets="@../css/style.css">
+    
+    <VBox styleClass="sidebar" prefWidth="240" spacing="15">
+        <Label text="TradeMatrix" styleClass="title-brand">
+            <VBox.margin><Insets bottom="30" top="10"/></VBox.margin>
+        </Label>
+        
+        <Button text=" Dashboard" onAction="#handleGoToDashboard" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" Portfolio" onAction="#handleGoToPortfolio" styleClass="sidebar-btn" maxWidth="Infinity"/>
+        <Button text=" History" onAction="#handleGoToHistory" styleClass="sidebar-btn-active" maxWidth="Infinity"/>
+        <Button text=" Settings" onAction="#handleGoToSettings" styleClass="sidebar-btn" maxWidth="Infinity"/>
+    </VBox>
+    
+    <VBox HBox.hgrow="ALWAYS" spacing="20" style="-fx-padding: 30;">
+        <Label text="Transaction History" styleClass="title-main"/>
+        
+        <VBox styleClass="card" VBox.vgrow="ALWAYS" style="-fx-padding: 0;">
+            <TableView fx:id="historyTable" VBox.vgrow="ALWAYS" styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="dateCol" text="Date" prefWidth="120"/>
+                    <TableColumn fx:id="tickerCol" text="Ticker" prefWidth="150"/>
+                    <TableColumn fx:id="typeCol" text="Type" prefWidth="100"/>
+                    <TableColumn fx:id="qtyCol" text="Quantity" prefWidth="100"/>
+                    <TableColumn fx:id="priceCol" text="Price" prefWidth="120"/>
+                    <TableColumn fx:id="totalCol" text="Total" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </VBox>
+</HBox>
