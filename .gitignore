@@ -1,0 +1,18 @@
+.env
+**/.env
+
+# Local Python environments
+.venv/
+**/.venv/
+
+# Java / Maven
+target/
+**/target/
+
+# VS Code / Cursor
+.vscode/
+**/.vscode/
+
+# OS / misc
+.DS_Store
+Thumbs.db
