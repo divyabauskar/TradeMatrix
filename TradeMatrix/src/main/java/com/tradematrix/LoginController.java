@@ -27,8 +27,9 @@ public class LoginController {
         String username = usernameField.getText().trim();
         String email = emailField.getText().trim();
         String mobile = mobileField.getText().trim();
-        String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
+        // Normalize accidental leading/trailing whitespace (common with copy/paste).
+        String password = passwordField.getText().trim();
+        String confirmPassword = confirmPasswordField.getText().trim();
 
         if (fullName.isEmpty() || username.isEmpty() || email.isEmpty() || 
             mobile.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {

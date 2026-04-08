@@ -5,69 +5,63 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class DatabaseManager {
-    // Requires MySQL running locally
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/tradematrix?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-    private static final String USER = "root";
-    private static final String PASS = "123456";
+    private static final String DB_URL = buildSqliteUrl();
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, USER, PASS);
+        return DriverManager.getConnection(DB_URL);
     }
 
     public static void initializeDatabase() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("MySQL Driver not found in Classpath!");
-        }
-        
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement()) {
              
             String createUsers = "CREATE TABLE IF NOT EXISTS user_profile (" +
-                                 "id INT AUTO_INCREMENT PRIMARY KEY, " +
-                                 "username VARCHAR(100), " +
-                                 "email VARCHAR(255), " +
-                                 "full_name VARCHAR(255), " +
-                                 "password VARCHAR(255), " +
-                                 "mobile_number VARCHAR(20), " +
-                                 "base_currency VARCHAR(10) DEFAULT 'INR', " +
-                                 "created_at DATETIME DEFAULT CURRENT_TIMESTAMP)";
+                                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                 "username TEXT, " +
+                                 "email TEXT, " +
+                                 "full_name TEXT, " +
+                                 "password TEXT, " +
+                                 "mobile_number TEXT, " +
+                                 "base_currency TEXT DEFAULT 'INR', " +
+                                 "created_at TEXT DEFAULT CURRENT_TIMESTAMP)";
             stmt.execute(createUsers);
 
             String createTx = "CREATE TABLE IF NOT EXISTS transactions (" +
-                              "id INT AUTO_INCREMENT PRIMARY KEY, " +
-                              "user_id INT DEFAULT 0, " +
-                              "ticker VARCHAR(100) NOT NULL, " +
-                              "transaction_type ENUM('Buy', 'Sell') NOT NULL, " +
-                              "quantity DOUBLE NOT NULL, " +
-                              "price_per_share DOUBLE NOT NULL, " +
-                              "transaction_date DATE NOT NULL, " +
-                              "created_at DATETIME DEFAULT CURRENT_TIMESTAMP)";
+                              "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                              "user_id INTEGER DEFAULT 0, " +
+                              "ticker TEXT NOT NULL, " +
+                              "transaction_type TEXT NOT NULL CHECK(transaction_type IN ('Buy','Sell')), " +
+                              "quantity REAL NOT NULL, " +
+                              "price_per_share REAL NOT NULL, " +
+                              "transaction_date TEXT NOT NULL, " +
+                              "created_at TEXT DEFAULT CURRENT_TIMESTAMP)";
             stmt.execute(createTx);
 
             // Migrate existing schema if column is missing
             if (!columnExists(conn, "user_profile", "username")) {
-                stmt.execute("ALTER TABLE user_profile ADD COLUMN username VARCHAR(100)");
+                stmt.execute("ALTER TABLE user_profile ADD COLUMN username TEXT");
             }
             if (!columnExists(conn, "user_profile", "email")) {
-                stmt.execute("ALTER TABLE user_profile ADD COLUMN email VARCHAR(255)");
+                stmt.execute("ALTER TABLE user_profile ADD COLUMN email TEXT");
             }
             if (!columnExists(conn, "user_profile", "password")) {
-                stmt.execute("ALTER TABLE user_profile ADD COLUMN password VARCHAR(255)");
+                stmt.execute("ALTER TABLE user_profile ADD COLUMN password TEXT");
             }
             if (!columnExists(conn, "user_profile", "base_currency")) {
-                stmt.execute("ALTER TABLE user_profile ADD COLUMN base_currency VARCHAR(10) DEFAULT 'INR'");
+                stmt.execute("ALTER TABLE user_profile ADD COLUMN base_currency TEXT DEFAULT 'INR'");
             }
             if (!columnExists(conn, "transactions", "user_id")) {
-                stmt.execute("ALTER TABLE transactions ADD COLUMN user_id INT DEFAULT 0");
+                stmt.execute("ALTER TABLE transactions ADD COLUMN user_id INTEGER DEFAULT 0");
             }
             
-            System.out.println("MySQL database 'tradematrix' initialized successfully.");
+            System.out.println("SQLite database initialized successfully.");
         } catch (SQLException e) {
-            System.err.println("MySQL Database initialization failed: " + e.getMessage());
+            System.err.println("Database initialization failed: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -75,6 +69,18 @@ public class DatabaseManager {
     private static boolean columnExists(Connection conn, String tableName, String columnName) throws SQLException {
         try (ResultSet rs = conn.getMetaData().getColumns(null, null, tableName, columnName)) {
             return rs.next();
+        }
+    }
+
+    private static String buildSqliteUrl() {
+        try {
+            Path appDir = Paths.get(System.getProperty("user.home"), ".tradematrix");
+            Files.createDirectories(appDir);
+            Path dbPath = appDir.resolve("tradematrix.db");
+            return "jdbc:sqlite:" + dbPath.toAbsolutePath();
+        } catch (Exception e) {
+            // Last resort: current directory
+            return "jdbc:sqlite:tradematrix.db";
         }
     }
 }

@@ -20,7 +20,8 @@ public class LoginViewController {
     @FXML
     protected void handleLogin() {
         String username = usernameField.getText().trim();
-        String password = passwordField.getText();
+        // Keep consistent with signup (trim accidental whitespace).
+        String password = passwordField.getText().trim();
 
         if (username.isEmpty() || password.isEmpty()) {
             statusLabel.setText("Please enter username and password.");
